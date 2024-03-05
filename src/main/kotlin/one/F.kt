@@ -2,9 +2,8 @@ package one
 
 import java.io.File
 
-fun main() {
-    val input = File("src/input.txt").readLines()
-    val output = File("src/output.txt")
+fun F() {
+    val input = File("input.txt").readLines()
 
     val numbers = input[1].split(" ").map { it.toInt() }
     var a = numbers[0] % 2 == 0

@@ -1,9 +1,8 @@
 package test
 
-import one.main
 import java.io.File
 
-private const val taskName = "F"
+private const val taskName = "G"
 
 fun main() {
     runTests()
@@ -11,15 +10,23 @@ fun main() {
 
 private fun runTests() {
 
-    val inputTaskFilePath = "src/input.txt"
+    val inputTaskFilePath = "input.txt"
     val inputTestFilePath = "src/main/kotlin/test/$taskName/input.txt"
-    val outputTaskFilePath = "src/output.txt"
+    val outputTaskFilePath = "output.txt"
     val outputTestFilePath = "src/main/kotlin/test/$taskName/output.txt"
 
     val inputTaskFile = File(inputTaskFilePath)
     val inputTestFile = File(inputTestFilePath)
     val outputTaskFile = File(outputTaskFilePath)
     val outputTestFile = File(outputTestFilePath)
+
+    if (!inputTestFile.exists()) {
+        inputTestFile.createNewFile()
+    }
+
+    if (!outputTestFile.exists()) {
+        outputTestFile.createNewFile()
+    }
 
     val inputs = inputTestFile.readText().split("\n\r")
     val outputs = outputTestFile.readText().split("\n\r")
@@ -28,7 +35,7 @@ private fun runTests() {
 
         clearOutputTaskFile(outputTaskFile)
         rewriteInputTest(s.trim(), inputTaskFile)
-        main()
+        one.main()
 
         val outputTask = outputTaskFile.readText()
         val outputTest = outputs.getOrNull(index)?.trim()
